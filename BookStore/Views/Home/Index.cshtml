@@ -1,0 +1,56 @@
+﻿@*@using BookStore.Models*@
+@*@model IEnumerable<BookStore.Models.Book>*@
+
+@model PagedList.IPagedList<BookStore.Models.Book>
+@using PagedList.Mvc;
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h3>Book sale</h3>
+    <td><p><a href="/Home/Create">Add new book</a></p></td>
+    <table>
+        <tr>
+            <th>
+                <p> @Html.DisplayNameFor(model => model.First().Name)</p>
+            </th>
+            <th>
+               <p> @Html.DisplayNameFor(model => model.First().Author)</p>         
+            </th>
+            <th>
+               <p> @Html.DisplayNameFor(model => model.First().Price)</p>           
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>
+                    <p>@Html.DisplayFor(modelItem => b.Name)</p>
+                </td>
+                <td>
+                    <p>@Html.DisplayFor(modelItem => b.Author)</p>
+                </td>
+                <td>
+                    <p>@Html.DisplayFor(modelItem => b.Price)</p>
+                </td>
+
+
+                <td> @Html.ActionLink("Buy", "Buy", new { id = b.Id }) |</td>
+                <td> @Html.ActionLink("Edit", "EditBook", new { id = b.Id }) |</td>
+                <td> @Html.ActionLink("Details", "Details", new { id = b.Id }) |</td>
+                <td> @Html.ActionLink("Delete", "Delete", new { id = b.Id }) </td>
+            </tr>
+
+        }
+    </table>
+    <br />
+    Page № @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount;
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+</div>

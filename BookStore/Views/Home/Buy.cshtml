@@ -1,0 +1,21 @@
+﻿@model BookStore.Models.Purchase
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div>
+        <h3>Checkout form</h3>
+        @using (Html.BeginForm("Buy", "Home", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.BookId)
+            @Html.LabelFor(m => m.Person, "Enter your name")
+            <br />
+            @Html.TextBoxFor(m => m.Person)
+            <br /><br />
+            @Html.LabelFor(m => m.Address, "Enter address")
+            <br />
+            @Html.TextBoxFor(m => m.Address)
+            <p><input type="submit" value="Submit" /></p>
+            
+
+        }
+    </div>

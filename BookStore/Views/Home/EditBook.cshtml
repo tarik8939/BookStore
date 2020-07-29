@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Edit book";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model BookStore.Models.Book
+<h2>Book № @Model.Id</h2>
+@using (Html.BeginForm("EditBook", "Home", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            @Html.LabelFor(m => m.Name, "Name of the book")
+            <br />
+            @Html.EditorFor(m => m.Name)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Author, "Author")
+            <br />
+            @Html.EditorFor(m => m.Author)
+
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Price, "Price")
+            <br />
+            @Html.EditorFor(m => m.Price)
+        </p>
+        <p><input type="submit" value="Submit" /></p>
+    </fieldset>
+}
