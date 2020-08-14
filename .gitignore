@@ -26,6 +26,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+BookStore/Views/Create.cshtml
+BookStore/Views/EditBook.cshtml
+.idea/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

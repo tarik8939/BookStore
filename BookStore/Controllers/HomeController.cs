@@ -70,9 +70,14 @@ namespace BookStore.Controllers
         [HttpPost]
         public async Task<ActionResult> EditBook(Book book)
         {
-            db.Entry(book).State = EntityState.Modified;
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid) 
+            {
+                db.Entry(book).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(book);
+
         }
 
         [HttpGet]
@@ -81,12 +86,17 @@ namespace BookStore.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> Create(Book book)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Author,Price")] Book book)
         {
-            db.Entry(book).State = EntityState.Added;
-            await db.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                db.Entry(book).State = EntityState.Added;
+                await db.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View(book);
+
         }
         [HttpGet]
         public async Task<ActionResult> Delete(int? id)

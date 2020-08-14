@@ -10,7 +10,7 @@
     <h4>Book</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
@@ -32,11 +32,13 @@
 
         <dd>
             @Html.DisplayFor(model => model.Price)
-        </dd>
+        </dd>*@
+
+        @Html.DisplayForModel()
         <ul>
             @foreach (var c in Model.Purchases)
             {
-                <li>@c.PurchaseId</li>
+                <li>@c.PurchaseId</li>            
             }
         </ul>
 
