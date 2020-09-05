@@ -25,7 +25,9 @@ namespace BookStore.Controllers
         {
             Books = new List<Book>();
             Books = db.Books.ToList();
+            ViewBag.Authors = db.Books.Select(s => s.Author).Distinct();
         }
+        //[Authorize]
         public async Task<ActionResult> Index(int? page)
         {
             int pageSize = 3;
@@ -137,8 +139,22 @@ namespace BookStore.Controllers
             ViewBag.Book = book;
             return View(book);
         }
+        [HttpPost]
+        public ActionResult BookSearch(string name)
+        {
+            var allbooks = db.Books.Where(a => a.Author.Contains(name)).ToList();
+            if (allbooks.Count <= 0)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(allbooks);
+        }
+        [HttpPost]
+        public String Find(string name)
+        {
 
-
+            return name;
+        }
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
