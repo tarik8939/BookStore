@@ -48,10 +48,10 @@ namespace BookStore.Controllers
                 purchase.Date = DateTime.Now;
                 purchase.BookId = book.Id;
             //purchase.Books.Add(book);
-            purchase.Books.Add(book);
+                purchase.Books.Add(book);
                 //purchase.Books.Add(db.Books.Find(purchase.BookId));
                 db.Purchases.Add(purchase);
-                await db.SaveChangesAsync();
+                db.SaveChangesAsync();
                 return $"Thank you {purchase.Person} for the purchase.{purchase.BookId}";
             
         }
