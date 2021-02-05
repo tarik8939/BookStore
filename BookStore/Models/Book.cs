@@ -31,10 +31,10 @@ namespace BookStore.Models
         [RegularExpression(@"(?<=(\D|^))[1-9]\d*", ErrorMessage = "Invalid Price")]
         public int Price { get; set; }
 
-        public virtual ICollection<Purchase> Purchases { get; set; }
-        public Book()
-        {
-            Purchases = new List<Purchase>();
-        }
+        public virtual ICollection<Purchase> Purchases { get; set; } = new List<Purchase>();
+        //public Book()
+        //{
+        //    Purchases = new List<Purchase>();
+        //}
     }
 }

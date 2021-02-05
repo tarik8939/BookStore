@@ -9,10 +9,10 @@ namespace BookStore.Models
         public string Address { get; set; }
         public int BookId { get; set; }
         public DateTime Date { get; set; }
-        public virtual ICollection<Book> Books { get; set; }
-        public Purchase()
-        {
-            Books = new List<Book>();
-        }
+        public virtual ICollection<Book> Books { get; set; } = new List<Book>();
+        //public Purchase()
+        //{
+        //    Books = new List<Book>();
+        //}
     }
 }
